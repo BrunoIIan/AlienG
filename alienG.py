@@ -29,6 +29,13 @@ pos_player_y = 300
 
 rodando = True
 
+#FUNÇÕES
+def respawn():
+    x = 1350
+    y = random.randint(1,640)
+    return[x,y]
+
+
 while rodando:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -48,6 +55,11 @@ while rodando:
     
     if tecla[pygame.K_DOWN] and pos_player_y < 665:
         pos_player_y += 8
+
+    #RESPAWN
+    if pos_alien_x == 50:
+        pos_alien_x = respawn()[0]
+        pos_alien_y = respawn()[1]
 
     #MOVIMENTO
     x -= 5
