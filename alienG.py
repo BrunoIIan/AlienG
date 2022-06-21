@@ -1,6 +1,10 @@
 import pygame
 import random
 import time
+import os
+
+os.system ("color 1")
+os.system ("cls")
 
 nome = input("Nome: ")
 email = input("Email: ")
@@ -63,7 +67,7 @@ alien_rect = alien.get_rect()
 missil_rect = missil.get_rect()
 
 #FUNÇÕES
-def ExibeGameOver():
+def perdeu():
     font = pygame.font.SysFont('fonts\PixelGameFont.ttf', 100)
     text = font.render("Game Over", True, (165,42,42))
     screen.blit(text, (450,300))
@@ -71,6 +75,14 @@ def ExibeGameOver():
     time.sleep(3)
     exit()
     
+def ganhou():
+    font = pygame.font.SysFont('fonts\PixelGameFont.ttf', 100)
+    text = font.render("You Win!!!", True, (165,42,42))
+    screen.blit(text, (450,300))
+    pygame.display.update()
+    time.sleep(3)
+    exit()
+
 def respawn():
     x = 1350
     y = random.randint(1,640)
@@ -92,7 +104,10 @@ def colisions():
         pontos += 1
         return True
     elif pontos == 0:
-        ExibeGameOver()
+        perdeu()
+    elif pontos == 50:
+        ganhou()
+
     else:
         return False
 
@@ -175,4 +190,4 @@ while rodando:
 
     pygame.display.update()
     
-    clock.tick(120)
+    clock.tick(60)
